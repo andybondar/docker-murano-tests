@@ -57,3 +57,6 @@ echo $OS_AUTH_URL
 
 nova list
 
+# Create new folder for logs
+rm -rf logs/
+mkdir logs
