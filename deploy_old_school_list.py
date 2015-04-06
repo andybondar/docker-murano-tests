@@ -6,12 +6,11 @@ def test_deploy_old_school(c):
 	'postgres': 'test_deploy_postgres',
 	'tomcat': 'test_deploy_apache_tomcat',
 	'zabbix': 'test_deploy_zabbix_server',
-	'tomcat': 'test_deploy_standalone_docker',
-    }.get(c, 'test_deploy_hdp')
+	'standalone_docker': 'test_deploy_standalone_docker',
+    }.get(c, 'test_deploy_tomcat')
 
 
 import sys
 
-x = sys.argv[1] if len(sys.argv) > 1 else 'hdp'
+x = sys.argv[1] if len(sys.argv) > 1 else 'tomcat'
 print test_deploy_old_school(x)
-#hdp,apache_mysql_wordpress,postgres,tomcat,zabbix,standalone_docker
