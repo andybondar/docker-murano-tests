@@ -13,5 +13,5 @@ IFS=',' read -a array <<< "$deploy_old_school_test_list"
 for i in "${array[@]}"
 do
     app_test=`python deploy_old_school_list.py $i`
-    nosetests -sv --collect-only test_deploy_old_school.py:MuranoOldSchoolTest.$app_test
+    nosetests -sv --collect-only test_deploy_old_school.py:MuranoOldSchoolTest.$app_test &> logs/${app_test}.log
 done
