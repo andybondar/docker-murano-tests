@@ -1,5 +1,9 @@
 #!/bin/bash -x
 
+# Create new folder for logs
+rm -rf logs/
+mkdir logs
+
 if [ -z "$DC_ID" ]; then
     echo "Datacenter is not defined!"
     exit 1
@@ -57,6 +61,4 @@ echo $OS_AUTH_URL
 
 nova list
 
-# Create new folder for logs
-rm -rf logs/
-mkdir logs
+
