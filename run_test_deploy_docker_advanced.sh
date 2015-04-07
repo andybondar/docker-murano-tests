@@ -12,7 +12,7 @@ IFS=',' read -a array <<< "$deploy_docker_advanced_test_list"
 
 for i in "${array[@]}"
 do
-    app_test=`deploy_docker_advanced_list.py $i`
+    app_test=`python deploy_docker_advanced_list.py $i`
     nosetests -sv test_deploy_docker_advanced.py:MuranoDockerTestAdvanced.$app_test &> logs/advanced_${app_test}.log
     result=`cat logs/${app_test}.log | head -1 | awk '{print $3}'`
     if [ "$result"="ok" ]; then
