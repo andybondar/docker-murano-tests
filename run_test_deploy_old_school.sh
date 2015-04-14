@@ -15,7 +15,7 @@ do
     app_test=`python deploy_old_school_list.py $i`
     nosetests -sv test_deploy_old_school.py:MuranoOldSchoolTest.$app_test &> logs/${app_test}.log
     result=`cat logs/${app_test}.log | head -1 | awk '{print $3}'`
-    if [ "$result"="ok" ]; then
+    if [ "$result" = "ok" ]; then
 	mv logs/${app_test}.log logs/${app_test}_OK.log
     else
 	mv logs/${app_test}.log logs/${app_test}_${result}.log
