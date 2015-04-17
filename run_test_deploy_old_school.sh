@@ -6,6 +6,7 @@ if [ -z "$deploy_old_school_test_list" ]; then
 fi
 
 #virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
+source .env/bin/activate
 
 IFS=',' read -a array <<< "$deploy_old_school_test_list"
 
