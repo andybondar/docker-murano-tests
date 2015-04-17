@@ -38,6 +38,7 @@ ctrl_ip=`sshpass -p$fuel_master_pass ssh -oConnectTimeout=5 -oStrictHostKeyCheck
 horizon_ip=`ssh -oConnectTimeout=5 -oStrictHostKeyChecking=no -oCheckHostIP=no -oUserKnownHostsFile=/dev/null ${proviant_user}@${proviant_ip} -p ${proviant_port} proviant-dc-details --dc $DC_ID | grep horizonURL | awk -F"//" '{print $2}' | awk -F "/" '{print $1}'`
 
 # to verify - SSH connection to Horizon
+# here - just copy openrc file - from ctrl to fm, from fm to host where this script runs
 echo '#!/bin/sh' > openrc
 echo `sshpass -p$fuel_master_pass ssh -oConnectTimeout=5 -oStrictHostKeyChecking=no -oCheckHostIP=no -oUserKnownHostsFile=/dev/null -oRSAAuthentication=no -oPubkeyAuthentication=no $fuel_master_user@$FUEL_IP ssh $ctrl_ip cat /root/openrc | grep OS_TENANT_NAME` >> openrc
 echo `sshpass -p$fuel_master_pass ssh -oConnectTimeout=5 -oStrictHostKeyChecking=no -oCheckHostIP=no -oUserKnownHostsFile=/dev/null -oRSAAuthentication=no -oPubkeyAuthentication=no $fuel_master_user@$FUEL_IP ssh $ctrl_ip cat /root/openrc | grep OS_USERNAME` >> openrc
@@ -49,6 +50,7 @@ sed -i s/$fake_ip/$horizon_ip/g openrc
 
 source openrc
 
+# I'd prefer to modify Murano tests to read credentials from env vars
 sed -i "s<^auth_url.*<auth_url = ${OS_AUTH_URL}<g" config.conf
 sed -i "s<^user.*<user = ${OS_USERNAME}<g" config.conf
 sed -i "s<^password.*<password = ${OS_PASSWORD}<g" config.conf
@@ -61,4 +63,5 @@ echo $OS_AUTH_URL
 
 nova list
 
-
+rm -rf .env
+virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt

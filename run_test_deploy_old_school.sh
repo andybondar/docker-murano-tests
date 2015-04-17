@@ -5,7 +5,7 @@ if [ -z "$deploy_old_school_test_list" ]; then
     exit 1
 fi
 
-virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
+#virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
 
 IFS=',' read -a array <<< "$deploy_old_school_test_list"
 
