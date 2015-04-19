@@ -15,7 +15,7 @@ for i in "${array[@]}"
 do
     app_test=`python deploy_docker_list.py $i`
     nosetests -sv test_deploy_docker.py:MuranoDockerTest.$app_test &> logs/${app_test}.log
-    result=`cat logs/${app_test}.log | head -1 | awk '{print $3}'`
+    result=`head -1 logs/${app_test}.log | awk '{print $3}'`
     if [ "$result" = "ok" ]; then
 	mv logs/${app_test}.log logs/${app_test}_OK.log
     else
