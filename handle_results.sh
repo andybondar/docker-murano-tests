@@ -3,6 +3,10 @@
 fails=`ls -lh logs/ | grep FAIL | wc -l`
 errors=`ls -lh logs/ | grep ERROR | wc -l`
 
+tar cvfz report.tar.gz logs/*
+rm -f logs/*
+mv report.tar.gz logs/
+
 sum=$(($fails + $errors))
 
 if [ "$sum" -gt 0 ]; then
@@ -13,7 +17,3 @@ fi
 if [ "$sum" -gt 0 ]; then
     echo "All tests passed."
 fi
-
-tar cvfz report.tar.gz logs/*
-rm -f logs/*
-mv report.tar.gz logs/
