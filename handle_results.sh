@@ -13,3 +13,7 @@ fi
 if [ "$sum" -gt 0 ]; then
     echo "All tests passed."
 fi
+
+tar cvfz report.tar.gz logs/*
+rm -f logs/*
+mv report.tar.gz logs/
