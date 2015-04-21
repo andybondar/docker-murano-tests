@@ -3,11 +3,6 @@
 fails=`ls -lh logs/ | grep FAIL | wc -l`
 errors=`ls -lh logs/ | grep ERROR | wc -l`
 
-#tar cvfz report.tar.gz logs/*
-#rm -f logs/*
-#mv report.tar.gz logs/
-rm -f logs/*OK.log
-
 sum=$(($fails + $errors))
 
 if [ "$sum" -gt 0 ]; then
