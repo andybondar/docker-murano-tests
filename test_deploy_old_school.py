@@ -46,7 +46,8 @@ class MuranoOldSchoolTest(core.MuranoTestsCore):
     def test_deploy_hdp(self):
         post_body = {
             "instance": {
-                "flavor": self.flavor,
+                "flavor": 
+                    "m1.large",
                 "image":
                     "hdp-sandbox",
                 "assignFloatingIp": True,
