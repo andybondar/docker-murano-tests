@@ -11,7 +11,7 @@ if [ "$sum" -gt 0 ]; then
 fi
 
 if [ "$sum" -gt 0 ]; then
-    echo "All tests passed."
+    echo "All tests passed" > logs/results.log
 fi
 
 rm -f logs/*_OK.log
