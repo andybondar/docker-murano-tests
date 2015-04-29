@@ -12,7 +12,7 @@ if [ "$sum" -gt 0 ]; then
     exit 1
 fi
 
-if [ "$sum" -gt 0 ]; then
+if [ "$sum" -eq 0 ]; then
     echo "All tests passed" > logs/results.log
 fi
 
